@@ -1,0 +1,15 @@
+node_modules/
+.next/
+.next-gate/
+out/
+build/
+coverage/
+playwright-report/
+test-results/
+.lighthouseci/
+package-lock.json
+next-env.d.ts
+specs/
+.specify/
+.claude/
+*.mdx

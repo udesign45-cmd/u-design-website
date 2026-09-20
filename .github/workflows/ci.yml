@@ -1,0 +1,63 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  quality-gates:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Type check
+        run: npm run typecheck
+
+      - name: Unit and content-integrity tests
+        run: npm test
+
+      - name: Production build (drafts gated, as a real deployment)
+        run: npm run build
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium webkit
+
+      # Builds and serves twice: the preview build on :3000 (drafts visible) and the
+      # draft-gated build on :3001 for the blog-gate project.
+      - name: End-to-end, accessibility, SEO and draft-gating tests
+        run: npm run test:e2e
+
+      - name: Build for Lighthouse (drafts visible, production indexing)
+        run: npm run build
+        env:
+          CONTENT_INCLUDE_DRAFTS: "true"
+          VERCEL_ENV: production
+          FORM_SIGNING_SECRET: ci-lighthouse
+
+      - name: Lighthouse CI (performance, accessibility, SEO budgets)
+        run: npm run lhci
+
+      - name: Upload Playwright report
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 7
+
+      - name: Dependency audit (non-blocking)
+        run: npm audit --audit-level=high
+        continue-on-error: true

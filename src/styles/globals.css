@@ -1,0 +1,457 @@
+@import "tailwindcss";
+
+/* Only application sources generate utilities (plan AD-14, task T182). */
+@source not "../../specs";
+@source not "../../.specify";
+@source not "../../tests";
+
+/* ==========================================================================
+   Design tokens — the single source of truth (constitution VII, plan AD-14)
+   ========================================================================== */
+
+@theme {
+  /* Colors: Tailwind's default palette is removed so no other colors exist. */
+  --color-*: initial;
+  --color-brand-green: #00d84a;
+  --color-brand-green-dark: #008a2e;
+  --color-green-deep: #003d1a; /* pending approval (Q-1); see --surface-deep-bg */
+  --color-ink: #0b0b0b;
+  --color-white: #ffffff;
+  --color-surface-gray: #f7f8fa;
+  /* Functional exceptions (plan Complexity Tracking) */
+  --color-ink-muted: #555555;
+  --color-line: #e4e6eb;
+  --color-control-border: #767676;
+  --color-danger: #b42318;
+  --color-transparent: transparent;
+  --color-current: currentColor;
+
+  /* Typography scale (fluid 320px → 1280px) */
+  --text-display: clamp(2.25rem, 1.75rem + 2.5vw, 3.75rem);
+  --text-display--line-height: 1.13;
+  --text-display--letter-spacing: -0.02em;
+  --text-h1: clamp(2rem, 1.6667rem + 1.6667vw, 3rem);
+  --text-h1--line-height: 1.17;
+  --text-h1--letter-spacing: -0.015em;
+  --text-h2: clamp(1.625rem, 1.375rem + 1.25vw, 2.375rem);
+  --text-h2--line-height: 1.21;
+  --text-h2--letter-spacing: -0.01em;
+  --text-h3: clamp(1.25rem, 1.1667rem + 0.4167vw, 1.5rem);
+  --text-h3--line-height: 1.33;
+  --text-h4: clamp(1.125rem, 1.0833rem + 0.2083vw, 1.25rem);
+  --text-h4--line-height: 1.4;
+  --text-lead: clamp(1.125rem, 1.0833rem + 0.2083vw, 1.25rem);
+  --text-lead--line-height: 1.6;
+  --text-body: 1rem;
+  --text-body--line-height: 1.625;
+  --text-small: 0.875rem;
+  --text-small--line-height: 1.57;
+  --text-eyebrow: 0.8125rem;
+  --text-eyebrow--line-height: 1.23;
+  --text-eyebrow--letter-spacing: 0.12em;
+  /* Miniature UI labels inside product illustrations only */
+  --text-micro: 0.6875rem;
+  --text-micro--line-height: 1.3;
+
+  /* Radius */
+  --radius-*: initial;
+  --radius-control: 0.75rem;
+  --radius-card: 1rem;
+  --radius-panel: 1.5rem;
+  --radius-pill: 9999px;
+
+  /* Shadows: low-opacity ink only, no colored glows */
+  --shadow-*: initial;
+  --shadow-card: 0 1px 2px rgb(11 11 11 / 0.04), 0 1px 3px rgb(11 11 11 / 0.06);
+  --shadow-raised: 0 12px 28px -12px rgb(11 11 11 / 0.22), 0 2px 6px rgb(11 11 11 / 0.06);
+  --shadow-panel: 0 32px 64px -24px rgb(11 11 11 / 0.45), 0 2px 8px rgb(11 11 11 / 0.08);
+
+  /* Containers */
+  --container-page: 79rem; /* 1200px content + 2 × 32px gutters */
+  --container-narrow: 45rem;
+  --container-prose: 65ch;
+
+  /* Breakpoints */
+  /* Narrow phones (320-374px) get a compact header: see Logo and Header. */
+  --breakpoint-xs: 23.4375rem;
+  --breakpoint-sm: 40rem;
+  --breakpoint-md: 48rem;
+  --breakpoint-lg: 64rem;
+  --breakpoint-xl: 80rem;
+  --breakpoint-2xl: 90rem;
+
+  /* Motion */
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+}
+
+/* Theme values that reference runtime variables (fonts from next/font, surfaces). */
+@theme inline {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-heading: var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
+  --color-surface: var(--surface-bg);
+  --color-fg: var(--surface-fg);
+  --color-fg-muted: var(--surface-fg-muted);
+  --color-accent: var(--surface-accent);
+}
+
+/* ==========================================================================
+   Surfaces — each sets background, foreground, muted text, accent and focus
+   ring so components adapt automatically (plan: Section variants).
+   ========================================================================== */
+
+:root {
+  --surface-deep-bg: var(--color-green-deep); /* If Q-1 is rejected: var(--color-ink) */
+  --header-height: 4.5rem;
+  --surface-bg: var(--color-white);
+  --surface-fg: var(--color-ink);
+  --surface-fg-muted: var(--color-ink-muted);
+  --surface-accent: var(--color-brand-green-dark);
+  --focus-ring: var(--color-brand-green-dark);
+  --surface-kicker: var(--color-ink);
+}
+
+@utility surface-white {
+  --surface-kicker: var(--color-ink);
+  --surface-bg: var(--color-white);
+  --surface-fg: var(--color-ink);
+  --surface-fg-muted: var(--color-ink-muted);
+  --surface-accent: var(--color-brand-green-dark);
+  --focus-ring: var(--color-brand-green-dark);
+  background-color: var(--surface-bg);
+  color: var(--surface-fg);
+}
+
+@utility surface-gray {
+  --surface-kicker: var(--color-ink);
+  --surface-bg: var(--color-surface-gray);
+  --surface-fg: var(--color-ink);
+  --surface-fg-muted: var(--color-ink-muted);
+  --surface-accent: var(--color-brand-green-dark);
+  --focus-ring: var(--color-brand-green-dark);
+  background-color: var(--surface-bg);
+  color: var(--surface-fg);
+}
+
+@utility surface-ink {
+  --surface-kicker: var(--color-brand-green);
+  --surface-bg: var(--color-ink);
+  --surface-fg: var(--color-white);
+  --surface-fg-muted: color-mix(in srgb, var(--color-white) 74%, var(--color-ink));
+  --surface-accent: var(--color-brand-green);
+  --focus-ring: var(--color-brand-green);
+  background-color: var(--surface-bg);
+  color: var(--surface-fg);
+}
+
+@utility surface-deep {
+  --surface-kicker: var(--color-brand-green);
+  --surface-bg: var(--surface-deep-bg);
+  --surface-fg: var(--color-white);
+  --surface-fg-muted: color-mix(in srgb, var(--color-white) 80%, var(--color-green-deep));
+  --surface-accent: var(--color-brand-green);
+  --focus-ring: var(--color-brand-green);
+  background-color: var(--surface-bg);
+  color: var(--surface-fg);
+}
+
+/* Section vertical rhythm: 64px → 96px (md) → 128px (xl) */
+@utility py-section {
+  padding-block: 4rem;
+  @media (width >= 48rem) {
+    padding-block: 6rem;
+  }
+  @media (width >= 80rem) {
+    padding-block: 8rem;
+  }
+}
+
+@utility py-section-compact {
+  padding-block: 3rem;
+  @media (width >= 48rem) {
+    padding-block: 4rem;
+  }
+}
+
+/* ==========================================================================
+   Base layer
+   ========================================================================== */
+
+@layer base {
+  html {
+    scroll-padding-top: calc(var(--header-height) + 1rem);
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    background-color: var(--color-white);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    line-height: var(--text-body--line-height);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-heading);
+    color: var(--surface-fg);
+    text-wrap: balance;
+  }
+
+  h1,
+  h2 {
+    font-weight: 700;
+  }
+
+  h3,
+  h4 {
+    font-weight: 600;
+  }
+
+  img,
+  svg,
+  video {
+    max-width: 100%;
+    height: auto;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: 2px;
+  }
+
+  ::selection {
+    background-color: var(--color-brand-green);
+    color: var(--color-ink);
+  }
+
+  /* Popovers default to the top layer; reset UA margins/borders. */
+  [popover] {
+    margin: 0;
+    border: 0;
+    padding: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ==========================================================================
+   Long-form content (MDX: legal pages and blog)
+   ========================================================================== */
+
+@utility prose-udesign {
+  max-width: var(--container-prose);
+  color: var(--surface-fg);
+  font-size: var(--text-body);
+  line-height: 1.75;
+
+  & > * + * {
+    margin-top: 1.25em;
+  }
+  & h2 {
+    font-size: var(--text-h3);
+    line-height: var(--text-h3--line-height);
+    margin-top: 2.25em;
+  }
+  & h3 {
+    font-size: var(--text-h4);
+    line-height: var(--text-h4--line-height);
+    margin-top: 1.75em;
+  }
+  & a:not([class]) {
+    color: var(--surface-fg);
+    text-decoration-line: underline;
+    text-decoration-color: var(--surface-accent);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 3px;
+  }
+  & a:not([class]):hover {
+    text-decoration-color: currentColor;
+  }
+  & ul,
+  & ol {
+    padding-left: 1.25rem;
+  }
+  & ul {
+    list-style: disc;
+  }
+  & ol {
+    list-style: decimal;
+  }
+  & li + li {
+    margin-top: 0.5em;
+  }
+  & li::marker {
+    color: var(--surface-accent);
+  }
+  & blockquote {
+    border-left: 3px solid var(--surface-accent);
+    padding-left: 1rem;
+    color: var(--surface-fg-muted);
+  }
+  & strong {
+    font-weight: 600;
+  }
+}
+
+/* Inline text links inside running copy: ink text + green underline (plan: links rule). */
+@utility link-inline {
+  color: var(--surface-fg);
+  text-decoration-line: underline;
+  text-decoration-color: var(--surface-accent);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+  &:hover {
+    text-decoration-color: currentColor;
+  }
+}
+
+/* ==========================================================================
+   Navigation
+   ========================================================================== */
+
+@utility nav-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  padding-inline: 0.75rem;
+  border-radius: var(--radius-control);
+  font-size: var(--text-small);
+  font-weight: 500;
+  color: var(--surface-fg);
+  transition: background-color 150ms var(--ease-standard);
+  &:hover {
+    background-color: color-mix(in srgb, var(--color-ink) 5%, transparent);
+  }
+}
+
+/* Popover panels: reset the UA "centered dialog" placement. */
+@utility nav-panel {
+  margin: 0;
+  overflow-y: auto;
+}
+
+@utility nav-dropdown {
+  max-height: calc(100dvh - var(--header-height));
+}
+
+/* The single permitted decorative gradient: a soft glow behind the hero visual. */
+@utility hero-backdrop {
+  background-image:
+    radial-gradient(
+      60% 70% at 85% 30%,
+      color-mix(in srgb, var(--color-brand-green) 16%, transparent),
+      transparent 70%
+    ),
+    radial-gradient(
+      40% 50% at 10% 100%,
+      color-mix(in srgb, var(--color-brand-green-dark) 30%, transparent),
+      transparent 70%
+    );
+}
+
+/* ==========================================================================
+   Motion (constitution VIII, plan AD-16): CSS only, transform/opacity only,
+   and content is never hidden unless motion is both supported and allowed.
+   ========================================================================== */
+
+@keyframes udesign-fade-up {
+  from {
+    opacity: 0.01;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes udesign-reveal {
+  from {
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes udesign-pop {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  /* Hero entrance (never applied to the H1, which is the LCP element). */
+  .motion-fade-up {
+    animation: udesign-fade-up 400ms var(--ease-standard) both;
+  }
+  .motion-fade-up:nth-of-type(2) {
+    animation-delay: 60ms;
+  }
+
+  /* Scroll-driven reveal where supported; otherwise content simply shows. */
+  @supports (animation-timeline: view()) {
+    .motion-reveal {
+      animation: udesign-reveal linear both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 25%;
+    }
+  }
+
+  /* Popover panels open with a short fade. */
+  .nav-panel:popover-open {
+    animation: udesign-pop 150ms var(--ease-standard);
+  }
+}
+
+/* Section eyebrow: 13px text never uses dark green on light surfaces (contrast rule). */
+@utility eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+  font-size: var(--text-eyebrow);
+  line-height: var(--text-eyebrow--line-height);
+  letter-spacing: var(--text-eyebrow--letter-spacing);
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--surface-kicker);
+  &::before {
+    content: "";
+    width: 1.25rem;
+    height: 2px;
+    border-radius: 9999px;
+    background-color: var(--color-brand-green);
+  }
+}
+
+/* ==========================================================================
+   Rendering performance (plan AD-12): skip layout/paint of off-screen
+   sections until they approach the viewport. Content stays in the DOM and the
+   accessibility tree; `auto` remembers each section's real size once rendered.
+   ========================================================================== */
+main > section:not(:first-child),
+main > div > section:not(:first-child),
+body > footer {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 900px;
+}
