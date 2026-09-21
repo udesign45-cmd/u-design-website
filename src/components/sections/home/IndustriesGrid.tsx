@@ -7,9 +7,14 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { home } from "@/content/home";
 import { getIndustries, hasPage } from "@/lib/content";
 
-/** Industry discovery with Manufacturing featured first (spec FR-014, FR-043). */
+/**
+ * Industry discovery. Manufacturing runs the full width as a photographic
+ * feature band; the rest sit in a lighter grid below — two compositions
+ * instead of one card shape repeated eight times (spec FR-014, FR-043).
+ */
 export function IndustriesGrid() {
-  const industries = getIndustries();
+  const [featured, ...rest] = getIndustries();
+
   return (
     <Section surface="gray" id="industries" labelledBy="industries-heading">
       <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
@@ -24,15 +29,22 @@ export function IndustriesGrid() {
           {home.industries.allLink}
         </Link>
       </div>
-      <ul className="motion-reveal mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
-        {industries.map((industry, index) => (
-          <li
-            key={industry.slug}
-            className={index === 0 ? "md:col-span-2 md:row-span-2" : undefined}
-          >
+
+      {featured ? (
+        <div className="motion-reveal mt-10">
+          <IndustryCard
+            industry={featured}
+            feature
+            href={hasPage(featured) ? `/industries/${featured.slug}` : undefined}
+          />
+        </div>
+      ) : null}
+
+      <ul className="motion-stagger mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        {rest.map((industry) => (
+          <li key={industry.slug}>
             <IndustryCard
               industry={industry}
-              feature={index === 0}
               href={hasPage(industry) ? `/industries/${industry.slug}` : undefined}
             />
           </li>

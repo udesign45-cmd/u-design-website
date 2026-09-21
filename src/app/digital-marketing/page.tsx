@@ -3,6 +3,7 @@ import { ServiceCard } from "@/components/cards/ServiceCard";
 import { Section } from "@/components/layout/Section";
 import { CtaBanner } from "@/components/sections/shared/CtaBanner";
 import { PageHero } from "@/components/sections/shared/PageHero";
+import { sectionImages } from "@/lib/content/images";
 import { Icon } from "@/components/ui/Icon";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { home } from "@/content/home";
@@ -35,6 +36,7 @@ export default function DigitalMarketingPage() {
         title={home.marketing.heading}
         intro="We help businesses improve their digital presence, reach the right audience and turn attention into enquiries, with marketing that is planned, measured and connected to your sales process."
         secondaryCta={{ label: "View Our Solutions", href: "/solutions" }}
+        image={sectionImages.marketingAnalytics}
       />
 
       <Section surface="white" id="services" labelledBy="services-heading">

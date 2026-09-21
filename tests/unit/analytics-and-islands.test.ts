@@ -52,6 +52,7 @@ describe("client component allowlist (plan AD-06, task T179)", () => {
     "src/components/analytics/TrackClicks.tsx",
     "src/components/forms/ConsultationForm.tsx",
     "src/components/portfolio/PortfolioFilter.tsx",
+    "src/components/visuals/HeroMedia.tsx",
   ];
 
   function walk(dir: string): string[] {

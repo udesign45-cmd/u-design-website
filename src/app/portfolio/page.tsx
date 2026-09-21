@@ -3,6 +3,7 @@ import { Section } from "@/components/layout/Section";
 import { PortfolioFilter } from "@/components/portfolio/PortfolioFilter";
 import { CtaBanner } from "@/components/sections/shared/CtaBanner";
 import { PageHero } from "@/components/sections/shared/PageHero";
+import { sectionImages } from "@/lib/content/images";
 import {
   getIndustries,
   getIndustry,
@@ -28,6 +29,7 @@ export default function PortfolioPage() {
         eyebrow="Portfolio"
         title="Business systems designed around real workflows"
         intro="Each project shows the business problem, how the system solves it, its key features and how it is applied. Concept projects are clearly labelled as Concept / Demo."
+        image={sectionImages.manufacturingWide}
       />
       <Section surface="gray" id="projects" labelledBy="projects-heading">
         <h2 id="projects-heading" className="sr-only">

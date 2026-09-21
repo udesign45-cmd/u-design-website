@@ -1,3 +1,4 @@
+import Image, { type StaticImageData } from "next/image";
 import type { ReactNode } from "react";
 import { Breadcrumbs } from "@/components/layout/Breadcrumbs";
 import { Section, type Surface } from "@/components/layout/Section";
@@ -18,6 +19,8 @@ type PageHeroProps = {
   surface?: Surface;
   aside?: ReactNode;
   trackLocation?: string;
+  /** Optional photo treatment for the band (used on template hubs). */
+  image?: StaticImageData;
 };
 
 /** Page header with H1 and, by default, the consultation CTA above the fold (FR-004). */
@@ -31,9 +34,27 @@ export function PageHero({
   surface = "deep",
   aside,
   trackLocation = "page-hero",
+  image,
 }: PageHeroProps) {
   return (
-    <Section surface={surface} spacing="compact" className="pt-8 md:pt-10">
+    <Section
+      surface={surface}
+      spacing="compact"
+      className={image ? "relative isolate overflow-hidden pt-8 md:pt-10" : "pt-8 md:pt-10"}
+    >
+      {image ? (
+        <>
+          <Image
+            src={image}
+            alt=""
+            fill
+            priority
+            sizes="100vw"
+            className="absolute inset-0 -z-10 object-cover"
+          />
+          <div aria-hidden="true" className="media-scrim -z-10" />
+        </>
+      ) : null}
       {breadcrumbs ? <Breadcrumbs trail={breadcrumbs} /> : null}
       <div className={aside ? "mt-8 grid items-center gap-10 lg:grid-cols-2" : "mt-8"}>
         <div className="max-w-3xl">

@@ -14,7 +14,7 @@ export const metadata = buildMetadata({ ...pageSeo.industries, path: "/industrie
 
 /** Industries hub with Manufacturing first (spec FR-040, FR-043). */
 export default function IndustriesPage() {
-  const industries = getIndustries();
+  const [featured, ...rest] = getIndustries();
   return (
     <>
       <PageHero
@@ -31,15 +31,20 @@ export default function IndustriesPage() {
           title="Industries we work with"
           intro="Choose your industry to see common challenges, the workflows we connect and the solutions that fit."
         />
-        <ul className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
-          {industries.map((industry, index) => (
-            <li
-              key={industry.slug}
-              className={index === 0 ? "md:col-span-2 md:row-span-2" : undefined}
-            >
+        {featured ? (
+          <div className="mt-10">
+            <IndustryCard
+              industry={featured}
+              feature
+              href={hasPage(featured) ? `/industries/${featured.slug}` : undefined}
+            />
+          </div>
+        ) : null}
+        <ul className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          {rest.map((industry) => (
+            <li key={industry.slug}>
               <IndustryCard
                 industry={industry}
-                feature={index === 0}
                 href={hasPage(industry) ? `/industries/${industry.slug}` : undefined}
               />
             </li>

@@ -4,6 +4,7 @@ import { Section } from "@/components/layout/Section";
 import { ProseBlock } from "@/components/sections/shared/ContentBlocks";
 import { CtaBanner } from "@/components/sections/shared/CtaBanner";
 import { PageHero } from "@/components/sections/shared/PageHero";
+import { sectionImages } from "@/lib/content/images";
 import { Card } from "@/components/ui/Card";
 import { Icon } from "@/components/ui/Icon";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -28,6 +29,7 @@ export default function AboutPage() {
         title={about.hero.heading}
         intro={about.hero.intro}
         secondaryCta={{ label: "View Our Solutions", href: "/solutions" }}
+        image={sectionImages.corporateTeam}
       />
 
       <ProseBlock id="who" eyebrow="Who we are" heading={about.who.heading} body={about.who.body} />

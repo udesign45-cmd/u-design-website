@@ -34,3 +34,5 @@ Thumbs.db
 
 # local agent settings
 .claude/settings.local.json
+.vercel
+.env*

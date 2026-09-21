@@ -3,6 +3,7 @@ import { ProcessSteps } from "@/components/cards/ProcessStep";
 import { Section } from "@/components/layout/Section";
 import { CtaBanner } from "@/components/sections/shared/CtaBanner";
 import { PageHero } from "@/components/sections/shared/PageHero";
+import { sectionImages } from "@/lib/content/images";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { processSteps } from "@/content/process";
 import { getSolutions, hasPage } from "@/lib/content";
@@ -24,6 +25,7 @@ export default function SolutionsPage() {
         eyebrow="Business Software & Digital Solutions"
         title="Software built around how your business works"
         intro="We design and build business systems that replace spreadsheets, manual steps and disconnected tools with one clear way of working."
+        image={sectionImages.corporateTechnology}
       />
 
       <Section surface="white" id="solutions" labelledBy="solutions-heading">
