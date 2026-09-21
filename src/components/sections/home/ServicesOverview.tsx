@@ -1,23 +1,75 @@
 import Link from "@/components/ui/AppLink";
-import { ServiceCard } from "@/components/cards/ServiceCard";
-import { Card, stretchedLink } from "@/components/ui/Card";
 import { Icon } from "@/components/ui/Icon";
 import { Section } from "@/components/layout/Section";
+import { ButtonLink } from "@/components/ui/Button";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { MarketingShowcase, SoftwareShowcase } from "@/components/visuals/DashboardPreview";
 import { home } from "@/content/home";
 import { getMarketingServices, getSolutions, hasPage } from "@/lib/content";
+import { sectionImages } from "@/lib/content/images";
 
-/** Two service categories under one growth offering (spec FR-013). */
+type Row = { name: string; benefit: string; href?: string };
+
+/** One row of a numbered editorial capability list (not a card grid). */
+function CapabilityRow({ index, name, benefit, href }: Row & { index: number }) {
+  return (
+    <li className="group grid grid-cols-[auto_1fr] items-start gap-x-5 gap-y-1 border-t border-line py-5 transition-colors first:border-t-0 first:pt-0 sm:grid-cols-[auto_1fr_auto] sm:items-center sm:py-6">
+      <span aria-hidden="true" className="editorial-index-sm tabular-nums">
+        {String(index).padStart(2, "0")}
+      </span>
+      <div>
+        <h4 className="text-h4">
+          {href ? (
+            <Link
+              href={href}
+              className="text-ink transition-colors hover:text-brand-green-dark focus-visible:text-brand-green-dark"
+            >
+              {name}
+            </Link>
+          ) : (
+            name
+          )}
+        </h4>
+        <p className="mt-1 text-ink-muted">{benefit}</p>
+      </div>
+      {href ? (
+        <Icon
+          name="arrow-right"
+          size={18}
+          className="col-start-2 mt-1 text-brand-green-dark transition-transform duration-200 group-hover:translate-x-1 sm:col-start-3 sm:mt-0"
+        />
+      ) : null}
+    </li>
+  );
+}
+
+/**
+ * Two capabilities, two distinct editorial compositions — a coded software
+ * dashboard on the left, real marketing photography on the right — instead
+ * of fourteen identical icon cards (spec FR-013).
+ */
 export function ServicesOverview() {
   const { services } = home;
   const solutions = getSolutions();
   const marketing = getMarketingServices().flatMap((service) =>
     service.covers.map((covered) => ({
       ...covered,
-      icon: service.icon,
       href: hasPage(service) ? `/digital-marketing/${service.slug}` : "/digital-marketing",
     })),
   );
+
+  const softwareRows: Row[] = [
+    ...solutions.map((s) => ({
+      name: s.name,
+      benefit: s.summary,
+      href: hasPage(s) ? `/solutions/${s.slug}` : undefined,
+    })),
+    {
+      name: services.software.digitalization.name,
+      benefit: services.software.digitalization.benefit,
+      href: services.software.digitalization.href,
+    },
+  ];
 
   return (
     <Section surface="white" id="services" labelledBy="services-heading">
@@ -29,77 +81,74 @@ export function ServicesOverview() {
         intro={services.intro}
       />
 
-      <div className="mt-14">
-        <div className="flex flex-col gap-2 border-b border-line pb-5 md:flex-row md:items-end md:justify-between">
-          <h3 className="text-h3">{services.software.heading}</h3>
-          <p className="text-ink-muted">{services.software.intro}</p>
-        </div>
-        <ul className="motion-reveal mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {solutions.map((s) => (
-            <li key={s.slug}>
-              <ServiceCard
-                name={s.name}
-                benefit={s.summary}
-                icon={s.icon}
-                href={hasPage(s) ? `/solutions/${s.slug}` : undefined}
-                headingLevel={4}
-              />
-            </li>
-          ))}
-          <li>
-            <ServiceCard
-              name={services.software.digitalization.name}
-              benefit={services.software.digitalization.benefit}
-              icon="refresh-cw"
-              href={services.software.digitalization.href}
-              headingLevel={4}
-            />
-          </li>
-        </ul>
-      </div>
-
-      <div className="mt-16">
-        <div className="flex flex-col gap-2 border-b border-line pb-5 md:flex-row md:items-end md:justify-between">
-          <h3 className="text-h3">{services.marketing.heading}</h3>
-          <p className="text-ink-muted">{services.marketing.intro}</p>
-        </div>
-        <ul className="motion-reveal mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {marketing.map((m) => (
-            <li key={m.name}>
-              <ServiceCard
-                name={m.name}
-                benefit={m.benefit}
-                icon={m.icon}
-                href={m.href}
-                headingLevel={4}
-              />
-            </li>
-          ))}
-          <li>
-            <Card variant="link" tone="deep" className="h-full">
-              <span className="mb-5 inline-flex size-11 items-center justify-center rounded-control bg-brand-green text-ink">
-                <Icon name="megaphone" size={22} />
-              </span>
-              <h4 className="text-h4">
-                <Link href="/digital-marketing" className={stretchedLink}>
-                  Explore digital marketing
-                </Link>
-              </h4>
-              <p className="mt-2 text-fg-muted">
-                See how marketing and software work together to grow your business.
-              </p>
-              <span
-                aria-hidden="true"
-                className="mt-auto inline-flex items-center gap-1 pt-5 text-small font-semibold"
+      {/* 01 — Business Software & Digital Solutions: coded product illustration, text left. */}
+      <div className="mt-16 border-t border-line pt-16 lg:mt-20 lg:pt-20">
+        <div className="grid gap-10 lg:grid-cols-12 lg:gap-16">
+          <div className="lg:col-span-5">
+            <p className="eyebrow">01 — What we build</p>
+            <h3 className="mt-3 text-h2">{services.software.heading}</h3>
+            <p className="mt-4 text-lead text-ink-muted">{services.software.intro}</p>
+            <div className="mt-8">
+              <ButtonLink
+                href="/solutions"
+                variant="secondary"
+                size="lg"
+                track={{
+                  event: "cta_click",
+                  label: "Explore Solutions",
+                  location: "services-software",
+                }}
               >
-                View services <Icon name="arrow-right" size={16} className="text-brand-green" />
-              </span>
-            </Card>
-          </li>
-        </ul>
+                Explore Solutions
+              </ButtonLink>
+            </div>
+          </div>
+          <SoftwareShowcase className="motion-reveal-right lg:col-span-7" />
+        </div>
+        <ol className="motion-stagger mt-14 lg:mt-16">
+          {softwareRows.map((row, i) => (
+            <CapabilityRow key={row.name} index={i + 1} {...row} />
+          ))}
+        </ol>
       </div>
 
-      <p className="mt-12 font-heading text-h4 font-semibold text-ink">{services.closing}</p>
+      {/* 02 — Digital Marketing & Growth: real photography, visual left for asymmetry. */}
+      <div className="mt-16 border-t border-line pt-16 lg:mt-20 lg:pt-20">
+        <div className="grid gap-10 lg:grid-cols-12 lg:gap-16">
+          <MarketingShowcase
+            image={sectionImages.marketingAnalytics}
+            className="motion-reveal-left order-2 lg:order-1 lg:col-span-7"
+          />
+          <div className="order-1 lg:order-2 lg:col-span-5">
+            <p className="eyebrow">02 — How we grow it</p>
+            <h3 className="mt-3 text-h2">{services.marketing.heading}</h3>
+            <p className="mt-4 text-lead text-ink-muted">{services.marketing.intro}</p>
+            <div className="mt-8">
+              <ButtonLink
+                href="/digital-marketing"
+                variant="secondary"
+                size="lg"
+                track={{
+                  event: "cta_click",
+                  label: "Explore Digital Marketing",
+                  location: "services-marketing",
+                }}
+              >
+                Explore Digital Marketing
+              </ButtonLink>
+            </div>
+          </div>
+        </div>
+        <ol className="motion-stagger mt-14 lg:mt-16">
+          {marketing.map((m, i) => (
+            <CapabilityRow key={m.name} index={i + 1} name={m.name} benefit={m.benefit} href={m.href} />
+          ))}
+        </ol>
+      </div>
+
+      <p className="pull-quote mt-16 border-t border-line pt-10 text-ink lg:mt-20">
+        {services.closing}
+      </p>
     </Section>
   );
 }

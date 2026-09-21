@@ -465,6 +465,17 @@
   color: var(--surface-fg-muted);
 }
 
+/* Smaller numerals for denser editorial lists (6-7 rows) where the full
+   .editorial-index scale would dominate the row. Same voice, smaller stage. */
+@utility editorial-index-sm {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: clamp(1.375rem, 1.2rem + 0.6vw, 1.875rem);
+  line-height: 1;
+  letter-spacing: -0.01em;
+  color: var(--surface-fg-muted);
+}
+
 /* Image inside a fixed-ratio, overflow-hidden frame that zooms slowly on
    hover/focus — the one "premium" micro-interaction reused everywhere a
    photo appears, instead of card-hover-lift-for-everything. */
