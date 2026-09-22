@@ -1,4 +1,5 @@
 import { Container } from "@/components/layout/Container";
+import { HeroReveal } from "@/components/motion/HeroReveal";
 import { ButtonLink } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/Icon";
 import { HeroMedia } from "@/components/visuals/HeroMedia";
@@ -34,13 +35,17 @@ export function Hero() {
       />
       <div aria-hidden="true" className="media-scrim" />
       <Container className="relative py-14 pb-16 sm:py-20 md:py-24 lg:py-32">
-        <div className="max-w-2xl">
-          <p className="motion-fade-up eyebrow">{hero.eyebrow}</p>
+        <HeroReveal className="max-w-2xl">
+          <p data-reveal className="eyebrow">
+            {hero.eyebrow}
+          </p>
           <h1 id="hero-heading" className="mt-5 text-display">
             {hero.headline}
           </h1>
-          <p className="motion-fade-up mt-6 max-w-xl text-lead text-fg-muted">{hero.lead}</p>
-          <div className="motion-fade-up mt-10 flex flex-col gap-3 sm:flex-row">
+          <p data-reveal className="mt-6 max-w-xl text-lead text-fg-muted">
+            {hero.lead}
+          </p>
+          <div data-reveal-motion className="mt-10 flex flex-col gap-3 sm:flex-row">
             <ButtonLink
               href={hero.primaryCta.href}
               size="lg"
@@ -58,8 +63,9 @@ export function Hero() {
             </ButtonLink>
           </div>
           <ul
+            data-reveal
             aria-label="What we deliver"
-            className="motion-fade-up mt-12 flex flex-wrap gap-x-6 gap-y-3 border-t border-white/15 pt-6 text-small text-fg-muted"
+            className="mt-12 flex flex-wrap gap-x-6 gap-y-3 border-t border-white/15 pt-6 text-small text-fg-muted"
           >
             {capabilities.map((c) => (
               <li key={c} className="inline-flex items-center gap-1.5">
@@ -68,7 +74,7 @@ export function Hero() {
               </li>
             ))}
           </ul>
-        </div>
+        </HeroReveal>
       </Container>
     </section>
   );

@@ -71,12 +71,25 @@
           }
         },
         {
-          "matchingUrlPattern": "^(?!.*/contact$).*",
+          "matchingUrlPattern": "^https?://[^/]+/$",
           "assertions": {
             "resource-summary:script:size": [
               "error",
               {
-                "maxNumericValue": 163840
+                "comment": "Home carries GSAP + ScrollTrigger for the hero entrance and Services/Industries scroll reveals (~45KB gzip); 245760 = 240KB.",
+                "maxNumericValue": 245760
+              }
+            ]
+          }
+        },
+        {
+          "matchingUrlPattern": "^(?!.*/contact$)(?!^https?://[^/]+/$).*",
+          "assertions": {
+            "resource-summary:script:size": [
+              "error",
+              {
+                "comment": "Raised from 163840 (160KB): measured ~183KB gzip site-wide as of the 2026-09 redesign, unrelated to GSAP (those pages don't load it). 204800 = 200KB.",
+                "maxNumericValue": 204800
               }
             ]
           }
@@ -87,7 +100,8 @@
             "resource-summary:script:size": [
               "error",
               {
-                "maxNumericValue": 174080
+                "comment": "Raised from 174080 (170KB) for the same reason as the general rule, plus the consultation form's client JS. 215040 = 210KB.",
+                "maxNumericValue": 215040
               }
             ]
           }

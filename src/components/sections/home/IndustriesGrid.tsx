@@ -1,6 +1,7 @@
 import Link from "@/components/ui/AppLink";
 import { IndustryCard } from "@/components/cards/IndustryCard";
 import { Section } from "@/components/layout/Section";
+import { ScrollStagger } from "@/components/motion/ScrollStagger";
 import { Card, stretchedLink } from "@/components/ui/Card";
 import { Icon } from "@/components/ui/Icon";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -40,7 +41,7 @@ export function IndustriesGrid() {
         </div>
       ) : null}
 
-      <ul className="motion-stagger mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+      <ScrollStagger as="ul" className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
         {rest.map((industry) => (
           <li key={industry.slug}>
             <IndustryCard
@@ -62,7 +63,7 @@ export function IndustriesGrid() {
             <p className="mt-2 text-fg-muted">We adapt every solution to your specific workflow.</p>
           </Card>
         </li>
-      </ul>
+      </ScrollStagger>
     </Section>
   );
 }

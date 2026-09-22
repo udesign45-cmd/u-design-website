@@ -1,4 +1,5 @@
 import Link from "@/components/ui/AppLink";
+import { ScrollStagger } from "@/components/motion/ScrollStagger";
 import { Icon } from "@/components/ui/Icon";
 import { Section } from "@/components/layout/Section";
 import { ButtonLink } from "@/components/ui/Button";
@@ -105,11 +106,11 @@ export function ServicesOverview() {
           </div>
           <SoftwareShowcase className="motion-reveal-right lg:col-span-7" />
         </div>
-        <ol className="motion-stagger mt-14 lg:mt-16">
+        <ScrollStagger as="ol" className="mt-14 lg:mt-16">
           {softwareRows.map((row, i) => (
             <CapabilityRow key={row.name} index={i + 1} {...row} />
           ))}
-        </ol>
+        </ScrollStagger>
       </div>
 
       {/* 02 — Digital Marketing & Growth: real photography, visual left for asymmetry. */}
@@ -139,11 +140,11 @@ export function ServicesOverview() {
             </div>
           </div>
         </div>
-        <ol className="motion-stagger mt-14 lg:mt-16">
+        <ScrollStagger as="ol" className="mt-14 lg:mt-16">
           {marketing.map((m, i) => (
             <CapabilityRow key={m.name} index={i + 1} name={m.name} benefit={m.benefit} href={m.href} />
           ))}
-        </ol>
+        </ScrollStagger>
       </div>
 
       <p className="pull-quote mt-16 border-t border-line pt-10 text-ink lg:mt-20">
