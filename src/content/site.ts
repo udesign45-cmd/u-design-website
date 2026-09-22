@@ -1,18 +1,21 @@
+import logoDark from "@/assets/images/logo-dark.webp";
+import logoLight from "@/assets/images/logo-light.webp";
 import type { SiteProfile } from "@/types/content";
 
 /**
  * Company profile. Only confirmed facts live here — never invent contact
  * details (constitution II).
  *
- * CONTENT INPUT REQUIRED (Q-2, Q-7): logo, email, phone, location, socials,
- * responseTime and hours are intentionally empty until U Design supplies them.
- * Components hide anything that is not provided.
+ * CONTENT INPUT REQUIRED (Q-7): email, phone, location, socials, responseTime
+ * and hours are intentionally empty until U Design supplies them. Components
+ * hide anything that is not provided.
  */
 export const site: SiteProfile = {
   name: "U Design",
   tagline: "Build. Market. Grow.",
   positioning: "Digital Solutions That Help Businesses Grow",
-  logo: undefined,
+  logo: { src: logoDark, alt: "U Design" },
+  logoLight: { src: logoLight, alt: "U Design" },
   email: undefined,
   phone: undefined,
   location: undefined,

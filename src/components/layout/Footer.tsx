@@ -23,7 +23,7 @@ export function Footer() {
       <Container className="py-section-compact">
         <div className="grid gap-12 lg:grid-cols-3">
           <div className="max-w-sm">
-            <Logo />
+            <Logo variant="light" />
             <p className="mt-5 font-heading text-h4 font-semibold text-brand-green">
               {site.tagline}
             </p>

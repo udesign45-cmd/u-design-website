@@ -257,7 +257,10 @@ export type SiteProfile = {
   name: "U Design";
   tagline: "Build. Market. Grow.";
   positioning: string;
+  /** For light surfaces (header, light footers). */
   logo?: StaticImage;
+  /** For dark surfaces (the footer). Falls back to `logo` when not set. */
+  logoLight?: StaticImage;
   email?: string;
   phone?: { display: string; e164: string };
   location?: { city?: string; country?: string; address?: string; mapUrl?: string };
