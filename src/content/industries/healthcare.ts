@@ -49,7 +49,7 @@ export const healthcare: Industry = {
     { name: "Billing", description: "Generate invoices and record payments for each visit." },
     { name: "Business operations", description: "Monitor schedules, patient volumes and revenue." },
   ],
-  solutions: ["custom-software", "crm", "automation"],
+  solutions: ["custom-software", "crm", "automation", "website-development"],
   features: [
     {
       title: "Appointment scheduling",

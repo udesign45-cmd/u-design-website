@@ -106,6 +106,28 @@ export const erp: Solution = {
   ],
   industries: ["manufacturing", "distribution", "retail", "construction"],
   projects: ["manufacturing-erp"],
+  faqs: [
+    {
+      question: "What is an ERP system?",
+      answer:
+        "An ERP (enterprise resource planning) system connects the different parts of a business — production, inventory, purchasing, sales and reporting — into one central system, instead of each department keeping its own spreadsheets or disconnected tools.",
+    },
+    {
+      question: "Do you build custom ERP software or configure an existing platform?",
+      answer:
+        "We build ERP systems designed around your specific processes, modules and reports, rather than forcing your business into a generic platform's fixed structure.",
+    },
+    {
+      question: "Is ERP only for large manufacturers?",
+      answer:
+        "No. We build ERP systems for manufacturing, distribution, retail and construction businesses of different sizes — the modules and complexity are scaled to what your operation actually needs.",
+    },
+    {
+      question: "What does an ERP system usually include?",
+      answer:
+        "A typical scope covers production, inventory, purchasing, sales and management reporting, with each module connected so data is entered once and stays consistent across the business.",
+    },
+  ],
   seo: {
     title: "Custom ERP Development for Growing Businesses",
     description:

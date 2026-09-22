@@ -1,6 +1,8 @@
 import Link from "@/components/ui/AppLink";
+import { CapabilityRow } from "@/components/cards/CapabilityRow";
 import { ProcessSteps } from "@/components/cards/ProcessStep";
 import { Section } from "@/components/layout/Section";
+import { ScrollStagger } from "@/components/motion/ScrollStagger";
 import { ProseBlock } from "@/components/sections/shared/ContentBlocks";
 import { CtaBanner } from "@/components/sections/shared/CtaBanner";
 import { PageHero } from "@/components/sections/shared/PageHero";
@@ -52,19 +54,11 @@ export default function AboutPage() {
           title={about.approach.heading}
           intro={about.approach.intro}
         />
-        <ul className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {about.approach.points.map((p) => (
-            <li key={p.title}>
-              <Card className="h-full">
-                <span className="inline-flex size-11 items-center justify-center rounded-control bg-green-deep text-brand-green">
-                  <Icon name={p.icon} size={22} />
-                </span>
-                <h3 className="mt-5 text-h4">{p.title}</h3>
-                <p className="mt-2 text-ink-muted">{p.description}</p>
-              </Card>
-            </li>
+        <ScrollStagger as="ol" className="mt-10 max-w-3xl">
+          {about.approach.points.map((p, i) => (
+            <CapabilityRow key={p.title} index={i + 1} name={p.title} benefit={p.description} />
           ))}
-        </ul>
+        </ScrollStagger>
       </Section>
 
       <Section surface="white" id="expertise" labelledBy="expertise-heading">

@@ -117,6 +117,28 @@ export const customSoftware: Solution = {
     "real-estate",
   ],
   projects: ["travel-agency-management"],
+  faqs: [
+    {
+      question: "What is custom software development?",
+      answer:
+        "Custom software development means building an application around how your business actually works, instead of adapting your business to fit an off-the-shelf product. It replaces spreadsheets, disconnected tools and manual workarounds with one system built for your workflow.",
+    },
+    {
+      question: "How is custom software different from an off-the-shelf product?",
+      answer:
+        "An off-the-shelf product is built for many businesses at once, so it covers common cases but often misses the specific steps your business relies on. Custom software is designed around your actual processes, data and reporting needs from the start.",
+    },
+    {
+      question: "Do you build custom software for any industry?",
+      answer:
+        "We build for the industries we understand best, including manufacturing, distribution, construction, logistics, travel, healthcare and real estate, adapting each system to how that specific industry operates.",
+    },
+    {
+      question: "Can custom software replace our spreadsheets and manual processes?",
+      answer:
+        "Yes. A common starting point is moving paper forms, spreadsheets and message-based approvals into a structured digital workflow, so data lives in one place and management has real visibility.",
+    },
+  ],
   seo: {
     title: "Custom Software Development for Businesses",
     description:

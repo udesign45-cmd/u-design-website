@@ -1,8 +1,10 @@
-import { ServiceCard } from "@/components/cards/ServiceCard";
+import { CapabilityRow } from "@/components/cards/CapabilityRow";
 import { ProcessSteps } from "@/components/cards/ProcessStep";
 import { Section } from "@/components/layout/Section";
+import { ScrollStagger } from "@/components/motion/ScrollStagger";
 import { CtaBanner } from "@/components/sections/shared/CtaBanner";
 import { PageHero } from "@/components/sections/shared/PageHero";
+import { SoftwareShowcase } from "@/components/visuals/DashboardPreview";
 import { sectionImages } from "@/lib/content/images";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { processSteps } from "@/content/process";
@@ -29,24 +31,27 @@ export default function SolutionsPage() {
       />
 
       <Section surface="white" id="solutions" labelledBy="solutions-heading">
-        <SectionHeading
-          id="solutions-heading"
-          level={2}
-          title="Our software solutions"
-          intro="Each solution is custom-built for your processes, and they can be combined as your business grows."
-        />
-        <ul className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {solutions.map((s) => (
-            <li key={s.slug}>
-              <ServiceCard
-                name={s.name}
-                benefit={s.summary}
-                icon={s.icon}
-                href={hasPage(s) ? `/solutions/${s.slug}` : undefined}
-              />
-            </li>
+        <div className="grid gap-10 lg:grid-cols-12 lg:gap-16 lg:items-start">
+          <SectionHeading
+            id="solutions-heading"
+            level={2}
+            title="Our software solutions"
+            intro="Each solution is custom-built for your processes, and they can be combined as your business grows."
+            className="lg:col-span-5"
+          />
+          <SoftwareShowcase className="lg:col-span-7" />
+        </div>
+        <ScrollStagger as="ol" className="mt-14 lg:mt-16">
+          {solutions.map((s, i) => (
+            <CapabilityRow
+              key={s.slug}
+              index={i + 1}
+              name={s.name}
+              benefit={s.summary}
+              href={hasPage(s) ? `/solutions/${s.slug}` : undefined}
+            />
           ))}
-        </ul>
+        </ScrollStagger>
       </Section>
 
       <Section surface="gray" id="process" labelledBy="process-heading">

@@ -108,6 +108,28 @@ export const socialMedia: MarketingService = {
   ],
   industries: ["manufacturing", "real-estate", "travel", "retail", "healthcare"],
   projects: [],
+  faqs: [
+    {
+      question: "Which platforms do you manage?",
+      answer:
+        "We choose the right mix for your audience — typically LinkedIn, Facebook and Instagram — rather than posting to every platform regardless of fit.",
+    },
+    {
+      question: "Do you create the content, or do we need to supply it?",
+      answer:
+        "We plan and create the content: posts, visuals and short videos that explain what you do, based on a monthly calendar agreed with you in advance.",
+    },
+    {
+      question: "How do you measure whether social media is working?",
+      answer:
+        "We review reach, engagement and enquiries each month against the plan, so we can see what's working and adjust the following month's content.",
+    },
+    {
+      question: "Is social media management worth it for a B2B business?",
+      answer:
+        "For B2B, social media mainly builds visibility and credibility with the people who influence buying decisions, rather than direct sales — it works best alongside lead generation and other channels, not on its own.",
+    },
+  ],
   seo: {
     title: "Social Media Marketing and Management Services",
     description:

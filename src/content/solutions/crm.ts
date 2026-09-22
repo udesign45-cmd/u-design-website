@@ -98,6 +98,28 @@ export const crm: Solution = {
   ],
   industries: ["real-estate", "travel", "distribution", "retail", "healthcare"],
   projects: ["real-estate-crm", "travel-agency-management"],
+  faqs: [
+    {
+      question: "What is a CRM system?",
+      answer:
+        "A CRM (customer relationship management) system captures leads, tracks follow-ups and records every interaction with a customer or prospect, so no enquiry is forgotten and management can see the whole sales pipeline.",
+    },
+    {
+      question: "Why build a custom CRM instead of using an off-the-shelf one?",
+      answer:
+        "Off-the-shelf CRMs are built around a generic sales process. A custom CRM is configured around the way your team actually sells — your pipeline stages, follow-up rules and the information your industry needs to track.",
+    },
+    {
+      question: "Which industries do you build CRM systems for?",
+      answer:
+        "We build CRM systems for real estate, travel, distribution, retail and healthcare businesses, each configured for how leads and customers move through that industry.",
+    },
+    {
+      question: "Can a CRM connect to our other business systems?",
+      answer:
+        "Yes. Where it helps, we connect the CRM to the ERP, dashboards and marketing systems we build, so sales, operations and marketing work from the same data instead of separate tools.",
+    },
+  ],
   seo: {
     title: "CRM Development: Custom CRM for Sales Teams",
     description:

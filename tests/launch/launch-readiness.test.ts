@@ -15,12 +15,17 @@ type Blockers = string[];
  * Explicit, dated waivers. A waiver records a decision the business made with the
  * trade-off in view — it is not a silent pass, and each one stays visible in the test
  * output and in qa/technical.md until it is lifted.
+ *
+ * Both waivers below were lifted on 2026-09-23: the official logo replaced the
+ * typographic wordmark, and U Design published a phone number and city/country
+ * (Karachi, Pakistan) — email stays private, used only for lead delivery. Kept
+ * here, unused, as the dated record of the earlier decision and its reversal.
  */
 const WAIVERS = {
   officialLogo:
-    "2026-09-21: launch approved with the typographic wordmark; the official SVG is still to come (Q-2).",
+    "2026-09-21: launch approved with the typographic wordmark; the official SVG is still to come (Q-2). Lifted 2026-09-23.",
   publicContactDetails:
-    "2026-09-21: U Design chose form-only contact. The email is used for lead delivery and account ownership, never displayed (Q-7).",
+    "2026-09-21: U Design chose form-only contact. The email is used for lead delivery and account ownership, never displayed (Q-7). Lifted 2026-09-23: phone and location are now public; email stays private.",
 } as const;
 
 async function content() {

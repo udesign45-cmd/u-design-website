@@ -9,7 +9,7 @@ test.describe("home page (US1, FR-010–FR-020)", () => {
     const h1 = page.getByRole("heading", { level: 1 });
     await expect(h1).toHaveText("Digital Solutions That Help Businesses Grow");
     await expect(
-      hero.getByText(/We build custom software, dashboards and automation systems/),
+      hero.getByText(/U Design builds custom software, dashboards and automation systems/),
     ).toBeVisible();
 
     const primary = hero.getByRole("link", { name: "Get Free Consultation" });

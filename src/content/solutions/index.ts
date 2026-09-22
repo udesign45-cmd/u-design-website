@@ -4,6 +4,14 @@ import { businessDashboards } from "./business-dashboards";
 import { crm } from "./crm";
 import { customSoftware } from "./custom-software";
 import { erp } from "./erp";
+import { websiteDevelopment } from "./website-development";
 
 /** All software solutions. Add new entries here; pages and navigation follow automatically. */
-export const solutions: Solution[] = [customSoftware, erp, crm, businessDashboards, automation];
+export const solutions: Solution[] = [
+  customSoftware,
+  erp,
+  crm,
+  businessDashboards,
+  automation,
+  websiteDevelopment,
+];

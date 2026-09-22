@@ -6,7 +6,7 @@ export const home = {
   hero: {
     eyebrow: "Build. Market. Grow.",
     headline: "Digital Solutions That Help Businesses Grow",
-    lead: "We build custom software, dashboards and automation systems while helping businesses grow through digital marketing and performance-driven advertising.",
+    lead: "U Design builds custom software, dashboards and automation systems while helping businesses grow through digital marketing and performance-driven advertising.",
     primaryCta: { label: "Get Free Consultation", href: "/contact#consultation" },
     secondaryCta: { label: "View Our Solutions", href: "/solutions" },
   },

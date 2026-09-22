@@ -103,6 +103,28 @@ export const metaAds: MarketingService = {
   ],
   industries: ["real-estate", "travel", "retail", "healthcare"],
   projects: [],
+  faqs: [
+    {
+      question: "What is Meta Ads management?",
+      answer:
+        "Meta Ads management covers planning, running and improving paid Facebook and Instagram campaigns — audience targeting, ad creative, budget and conversion tracking — so campaigns bring in qualified enquiries.",
+    },
+    {
+      question: "How much budget do I need for Meta Ads?",
+      answer:
+        "Budget depends on your industry, audience size and goals. We agree a starting budget with you and adjust it based on what the campaigns deliver, rather than fixing a number in advance.",
+    },
+    {
+      question: "How do you track whether campaigns are working?",
+      answer:
+        "We track conversions and enquiries from each campaign and report on what each one delivers, so budget can move toward what's working.",
+    },
+    {
+      question: "Do you also create the ad creative and copy?",
+      answer:
+        "Yes. We plan the audience targeting and also produce the ad creative and copy, so campaigns are ready to run rather than waiting on separate design work.",
+    },
+  ],
   seo: {
     title: "Meta Ads Management for Facebook and Instagram",
     description:

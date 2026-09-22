@@ -136,12 +136,13 @@ describe("JSON-LD builders (T168)", () => {
   const forbidden = /Review|AggregateRating|award|ratingValue/;
 
   it("organization only includes provided fields", () => {
-    const org = organization(site);
+    const bare = { ...site, email: undefined, phone: undefined, location: undefined, socials: [] };
+    const org = organization(bare);
     expect(org).toMatchObject({ "@type": "Organization", name: "U Design" });
     for (const key of ["email", "telephone", "sameAs", "address", "logo"])
       expect(org).not.toHaveProperty(key);
     const withContact = organization({
-      ...site,
+      ...bare,
       email: "hello@example.org",
       socials: [{ platform: "linkedin", url: "https://l.example" }],
     });
@@ -149,6 +150,11 @@ describe("JSON-LD builders (T168)", () => {
       email: "hello@example.org",
       sameAs: ["https://l.example"],
     });
+  });
+
+  it("resolves a relative logo URL to an absolute one", () => {
+    const org = organization(site, "/_next/static/media/logo-dark.webp");
+    expect(org.logo).toMatch(/^https?:\/\/.+\/_next\/static\/media\/logo-dark\.webp$/);
   });
 
   it("never emits empty values or forbidden types", () => {

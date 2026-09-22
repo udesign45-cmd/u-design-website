@@ -8,6 +8,7 @@ import { getBlogCategory, getCategoriesWithPosts, getPublishedPosts } from "@/li
 import { buildTrail } from "@/lib/seo/breadcrumbs";
 import { breadcrumbList } from "@/lib/seo/jsonld";
 import { buildMetadata } from "@/lib/seo/metadata";
+import { cx } from "@/lib/utils/cx";
 
 type Props = { params: Promise<{ category: string }> };
 
@@ -45,7 +46,14 @@ export default async function BlogCategoryPage({ params }: Props) {
         <h2 id="articles-heading" className="sr-only">
           Articles
         </h2>
-        <ul className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <ul
+          className={cx(
+            "grid gap-6",
+            posts.length === 1 && "max-w-md",
+            posts.length >= 2 && "md:grid-cols-2",
+            posts.length >= 3 && "lg:grid-cols-3",
+          )}
+        >
           {posts.map((post) => (
             <li key={post.slug}>
               <ArticleCard post={post} categoryName={category.name} headingLevel={3} />

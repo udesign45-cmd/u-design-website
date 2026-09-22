@@ -59,7 +59,7 @@ export const realEstate: Industry = {
       description: "Track installment plans, receipts and overdue amounts per unit.",
     },
   ],
-  solutions: ["crm", "business-dashboards", "custom-software"],
+  solutions: ["crm", "business-dashboards", "custom-software", "website-development"],
   features: [
     {
       title: "Lead source tracking",

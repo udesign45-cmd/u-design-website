@@ -6,6 +6,7 @@ import {
   FeatureGrid,
 } from "@/components/sections/shared/ContentBlocks";
 import { CtaBanner } from "@/components/sections/shared/CtaBanner";
+import { FaqList } from "@/components/sections/shared/FaqList";
 import { PageHero } from "@/components/sections/shared/PageHero";
 import { Icon } from "@/components/ui/Icon";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -13,6 +14,7 @@ import { consultationHref } from "@/lib/cta";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { buildTrail } from "@/lib/seo/breadcrumbs";
 import { breadcrumbList, faqPage, service as serviceLd } from "@/lib/seo/jsonld";
+import { sectionImages } from "@/lib/content/images";
 import type { MarketingServicePage } from "@/types/content";
 
 /** Marketing service page (spec FR-060, FR-061): outcomes, never guarantees. */
@@ -33,6 +35,7 @@ export function MarketingServiceTemplate({ service }: { service: MarketingServic
           href: consultationHref({ need: service.slug, source: path }),
         }}
         secondaryCta={{ label: "Grow Your Business", href: "/digital-marketing" }}
+        image={sectionImages.marketingAnalytics}
         aside={
           <div className="rounded-panel border border-white/15 bg-white/5 p-6 lg:p-8">
             <p className="text-small font-semibold text-white">What is included</p>
@@ -105,6 +108,8 @@ export function MarketingServiceTemplate({ service }: { service: MarketingServic
           </ul>
         </div>
       </Section>
+
+      {service.faqs?.length ? <FaqList faqs={service.faqs} /> : null}
 
       <CtaBanner
         title={`Plan your ${service.name} with us`}

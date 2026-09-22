@@ -80,9 +80,13 @@ test.describe("publication gate", () => {
     expect(dangling).toEqual([]);
   });
 
-  test("contact details stay private: the form is the only channel", async ({ page }) => {
+  test("email stays private; phone and location are published, the form remains available", async ({
+    page,
+  }) => {
     await page.goto("/contact");
-    await expect(page.locator("a[href^='mailto:'], a[href^='tel:']")).toHaveCount(0);
+    await expect(page.locator("a[href^='mailto:']")).toHaveCount(0);
+    await expect(page.locator("a[href^='tel:']")).toHaveCount(1);
+    await expect(page.getByText("Karachi, Pakistan")).toBeVisible();
     await expect(page.locator("#consultation-form")).toBeVisible();
   });
 });

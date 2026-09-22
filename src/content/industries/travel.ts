@@ -58,7 +58,7 @@ export const travel: Industry = {
       description: "Record advances, balances and refunds against each booking.",
     },
   ],
-  solutions: ["custom-software", "crm"],
+  solutions: ["custom-software", "crm", "website-development"],
   features: [
     {
       title: "Enquiry-to-booking pipeline",

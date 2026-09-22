@@ -17,6 +17,7 @@ import { consultationHref } from "@/lib/cta";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { buildTrail } from "@/lib/seo/breadcrumbs";
 import { breadcrumbList, faqPage, service as serviceLd } from "@/lib/seo/jsonld";
+import { sectionImages } from "@/lib/content/images";
 import type { Industry, Project, SolutionPage } from "@/types/content";
 
 type SolutionTemplateProps = {
@@ -51,6 +52,7 @@ export function SolutionTemplate({
           href: consultationHref({ need: solution.slug, source: path }),
         }}
         secondaryCta={caseStudy ? { label: "View Case Study", href: caseStudy } : undefined}
+        image={sectionImages.corporateTechnology}
         aside={
           <div className="rounded-panel border border-white/15 bg-white/5 p-6 lg:p-8">
             <p className="text-small font-semibold text-white">Typical uses</p>

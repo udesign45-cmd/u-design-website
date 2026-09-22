@@ -76,7 +76,7 @@ export const manufacturing: Industry = {
       description: "Give owners and directors a live view of production, orders and stock.",
     },
   ],
-  solutions: ["erp", "business-dashboards", "custom-software", "automation"],
+  solutions: ["erp", "business-dashboards", "custom-software", "automation", "website-development"],
   features: [
     {
       title: "Production orders and stages",

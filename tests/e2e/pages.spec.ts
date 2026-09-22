@@ -1,7 +1,7 @@
 import { expect, test } from "@playwright/test";
 
 test.describe("solutions (US4, FR-030–FR-032)", () => {
-  test("hub lists the five solutions", async ({ page }) => {
+  test("hub lists the six solutions", async ({ page }) => {
     await page.goto("/solutions");
     const list = page.locator("#solutions");
     for (const name of [
@@ -10,6 +10,7 @@ test.describe("solutions (US4, FR-030–FR-032)", () => {
       "CRM Solutions",
       "Business Dashboards",
       "Workflow Automation",
+      "Website Development",
     ]) {
       await expect(list.getByRole("heading", { name, exact: true })).toBeVisible();
     }

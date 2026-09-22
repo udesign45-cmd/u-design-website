@@ -1,8 +1,10 @@
 import Link from "@/components/ui/AppLink";
-import { ServiceCard } from "@/components/cards/ServiceCard";
+import { CapabilityRow } from "@/components/cards/CapabilityRow";
 import { Section } from "@/components/layout/Section";
+import { ScrollStagger } from "@/components/motion/ScrollStagger";
 import { CtaBanner } from "@/components/sections/shared/CtaBanner";
 import { PageHero } from "@/components/sections/shared/PageHero";
+import { MarketingShowcase } from "@/components/visuals/DashboardPreview";
 import { sectionImages } from "@/lib/content/images";
 import { Icon } from "@/components/ui/Icon";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -36,23 +38,28 @@ export default function DigitalMarketingPage() {
         title={home.marketing.heading}
         intro="We help businesses improve their digital presence, reach the right audience and turn attention into enquiries, with marketing that is planned, measured and connected to your sales process."
         secondaryCta={{ label: "View Our Solutions", href: "/solutions" }}
-        image={sectionImages.marketingAnalytics}
+        image={sectionImages.corporateTeam}
       />
 
       <Section surface="white" id="services" labelledBy="services-heading">
-        <SectionHeading
-          id="services-heading"
-          level={2}
-          title="Our digital marketing services"
-          intro="Choose the services you need, or combine them into one coordinated plan."
-        />
-        <ul className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {covered.map((c) => (
-            <li key={c.name}>
-              <ServiceCard name={c.name} benefit={c.benefit} icon={c.icon} href={c.href} />
-            </li>
+        <div className="grid gap-10 lg:grid-cols-12 lg:gap-16 lg:items-start">
+          <SectionHeading
+            id="services-heading"
+            level={2}
+            title="Our digital marketing services"
+            intro="Choose the services you need, or combine them into one coordinated plan."
+            className="lg:col-span-5"
+          />
+          <MarketingShowcase
+            image={sectionImages.marketingAnalytics}
+            className="lg:col-span-7"
+          />
+        </div>
+        <ScrollStagger as="ol" className="mt-14 lg:mt-16">
+          {covered.map((c, i) => (
+            <CapabilityRow key={c.name} index={i + 1} name={c.name} benefit={c.benefit} href={c.href} />
           ))}
-        </ul>
+        </ScrollStagger>
       </Section>
 
       {strategy ? (

@@ -48,7 +48,7 @@ export const retail: Industry = {
       description: "Compare sales, margins and stock movement by branch and product.",
     },
   ],
-  solutions: ["erp", "crm", "business-dashboards"],
+  solutions: ["erp", "crm", "business-dashboards", "website-development"],
   features: [
     {
       title: "Stock by branch",

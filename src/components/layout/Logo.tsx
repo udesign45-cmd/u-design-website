@@ -15,10 +15,10 @@ export function Logo({ className, variant = "dark" }: LogoProps) {
   return (
     <Link href="/" className={cx("inline-flex items-center", className)}>
       {mark ? (
-        <Image src={mark.src} alt="U Design home" height={32} className="h-8 w-auto" priority />
+        <Image src={mark.src} alt="U Design home" height={44} className="h-11 w-auto" priority />
       ) : (
-        <span className="inline-flex items-center gap-2 font-heading text-xl font-bold tracking-tight text-fg">
-          <span className="inline-flex size-8 items-center justify-center rounded-control bg-brand-green text-base text-ink">
+        <span className="inline-flex items-center gap-2 font-heading text-2xl font-bold tracking-tight text-fg">
+          <span className="inline-flex size-11 items-center justify-center rounded-control bg-brand-green text-lg text-ink">
             U
           </span>{" "}
           {/* Below 375px the mark alone keeps the header from overflowing (T200). */}

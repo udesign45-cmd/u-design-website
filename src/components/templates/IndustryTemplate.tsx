@@ -12,6 +12,7 @@ import { consultationHref } from "@/lib/cta";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { buildTrail } from "@/lib/seo/breadcrumbs";
 import { breadcrumbList } from "@/lib/seo/jsonld";
+import { industryImages } from "@/lib/content/images";
 import type { IndustryPage, Project, Solution } from "@/types/content";
 
 type IndustryTemplateProps = {
@@ -41,6 +42,7 @@ export function IndustryTemplate({ industry, solutions, projects }: IndustryTemp
           href: consultationHref({ industry: industry.slug, source: path }),
         }}
         secondaryCta={{ label: "View Our Solutions", href: "/solutions" }}
+        image={industryImages[industry.slug]}
         aside={
           <div className="rounded-panel border border-white/15 bg-white/5 p-6 lg:p-8">
             <div className="flex items-center gap-3">

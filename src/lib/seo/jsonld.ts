@@ -39,18 +39,19 @@ export function organization(site: SiteProfile, logoUrl?: string): Json {
     url: absoluteUrl("/"),
     slogan: site.tagline,
     description: site.positioning,
-    logo: logoUrl,
+    logo: logoUrl ? absoluteUrl(logoUrl) : undefined,
     email: site.email,
     telephone: site.phone?.e164,
     sameAs: site.socials.map((s) => s.url),
-    address: site.location?.address
-      ? {
-          "@type": "PostalAddress",
-          streetAddress: site.location.address,
-          addressLocality: site.location.city,
-          addressCountry: site.location.country,
-        }
-      : undefined,
+    address:
+      site.location?.address || site.location?.city || site.location?.country
+        ? {
+            "@type": "PostalAddress",
+            streetAddress: site.location.address,
+            addressLocality: site.location.city,
+            addressCountry: site.location.country,
+          }
+        : undefined,
   });
 }
 
