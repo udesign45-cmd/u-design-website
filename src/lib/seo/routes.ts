@@ -42,6 +42,7 @@ const staticPaths: Record<string, string> = {
   solutions: "/solutions",
   industries: "/industries",
   digitalMarketing: "/digital-marketing",
+  plans: "/plans",
   portfolio: "/portfolio",
   about: "/about",
   contact: "/contact",

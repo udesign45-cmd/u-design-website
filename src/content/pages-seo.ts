@@ -25,6 +25,11 @@ export const pageSeo = {
     description:
       "Digital marketing services: social media marketing and management, content creation, Meta Ads, lead generation, performance marketing and digital strategy.",
   },
+  plans: {
+    title: "Choose a Plan: Software and Marketing Packages",
+    description:
+      "Pick a service, then compare Basic, Standard and Premium scope side by side, from custom software and CRM to digital marketing, before you get started.",
+  },
   portfolio: {
     title: "Portfolio: Business Software and ERP Projects",
     description:

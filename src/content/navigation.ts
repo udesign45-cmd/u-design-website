@@ -14,7 +14,7 @@ export const primaryNav = [
 
 export const consultationCta = {
   label: "Choose the Plan",
-  href: "/contact#consultation",
+  href: "/plans",
 } as const;
 
 /** Legal links are derived from src/content/legal (visible pages only). */

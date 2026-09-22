@@ -25,7 +25,13 @@ test("keyboard-only consultation journey with visible focus (T213)", async ({
   const outline = await headerCta.evaluate((el) => getComputedStyle(el).outlineWidth);
   expect(parseFloat(outline)).toBeGreaterThanOrEqual(2);
   await page.keyboard.press("Enter");
-  await expect(page).toHaveURL(/\/contact#consultation$/);
+  await expect(page).toHaveURL(/\/plans$/);
+
+  // Continue with the keyboard to the first service's Get Started button
+  const getStarted = page.getByRole("link", { name: "Get Started" }).first();
+  await getStarted.focus();
+  await page.keyboard.press("Enter");
+  await expect(page).toHaveURL(/\/contact\?.*#consultation$/);
   await expect(page.locator("input[name='submissionId']")).not.toHaveValue("");
 
   // Fill the form with the keyboard only

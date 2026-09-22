@@ -66,7 +66,7 @@ test.describe("navigation (FR-001–FR-003)", () => {
       .getByRole("link", { name: "Choose the Plan" })
       .first();
     await expect(cta).toBeVisible();
-    await expect(cta).toHaveAttribute("href", "/contact#consultation");
+    await expect(cta).toHaveAttribute("href", "/plans");
   });
 
   test("Manufacturing is reachable from home in two actions (SC-003)", async ({ page }) => {

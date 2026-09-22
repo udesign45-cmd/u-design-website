@@ -23,6 +23,7 @@ const PUBLISHED = [
   "/industries/manufacturing",
   "/digital-marketing",
   "/digital-marketing/meta-ads",
+  "/plans",
   "/portfolio",
   "/about",
   "/contact",
