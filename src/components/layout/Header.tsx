@@ -20,7 +20,7 @@ export function Header() {
             className="px-3 sm:px-4 lg:px-5"
             track={{ event: "cta_click", label: cta.label, location: "header" }}
           >
-            <span className="hidden sm:inline">Get&nbsp;</span>Free Consultation
+            {cta.label}
           </ButtonLink>
           <MobileNav />
         </div>

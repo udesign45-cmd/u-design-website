@@ -24,6 +24,7 @@ const SLUG = /^[a-z0-9]+(-[a-z0-9]+)*$/;
 
 export const APPROVED_CTA_LABELS = [
   "Get Free Consultation",
+  "Choose the Plan",
   "View Our Solutions",
   "View Case Study",
   "Discuss Your Business",

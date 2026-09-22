@@ -50,7 +50,7 @@ test.describe("navigation (FR-001–FR-003)", () => {
       await expect(menu.getByRole("link", { name: label, exact: true })).toBeVisible();
     }
     await expect(
-      page.locator("#mobile-nav").getByRole("link", { name: "Get Free Consultation" }),
+      page.locator("#mobile-nav").getByRole("link", { name: "Choose the Plan" }),
     ).toBeVisible();
     await page.keyboard.press("Escape");
     await expect(menu).toBeHidden();
@@ -63,7 +63,7 @@ test.describe("navigation (FR-001–FR-003)", () => {
     await page.goto("/solutions");
     const cta = page
       .locator("header")
-      .getByRole("link", { name: /Free Consultation/ })
+      .getByRole("link", { name: "Choose the Plan" })
       .first();
     await expect(cta).toBeVisible();
     await expect(cta).toHaveAttribute("href", "/contact#consultation");

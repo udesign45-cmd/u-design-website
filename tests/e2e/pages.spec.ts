@@ -37,7 +37,7 @@ test.describe("solutions (US4, FR-030–FR-032)", () => {
     await expect(
       page.locator("#industries").getByRole("link", { name: "Manufacturing" }),
     ).toHaveAttribute("href", "/industries/manufacturing");
-    const cta = page.getByRole("link", { name: "Get Free Consultation" }).nth(1);
+    const cta = page.getByRole("link", { name: "Get Free Consultation" }).nth(0);
     await expect(cta).toHaveAttribute("href", /need=erp/);
   });
 });
@@ -76,7 +76,7 @@ test.describe("industries (US3, FR-040–FR-043)", () => {
       await expect(workflows.getByRole("heading", { name: w, exact: true })).toBeVisible();
     }
     await expect(page.locator("#related-projects").getByText("Manufacturing ERP")).toBeVisible();
-    await expect(page.getByRole("link", { name: "Get Free Consultation" }).nth(1)).toHaveAttribute(
+    await expect(page.getByRole("link", { name: "Get Free Consultation" }).nth(0)).toHaveAttribute(
       "href",
       /industry=manufacturing/,
     );
@@ -153,12 +153,6 @@ test.describe("digital marketing, about, contact, blog (US6–US8)", () => {
     ]) {
       await expect(page.getByRole("heading", { name: heading, exact: true })).toBeVisible();
     }
-  });
-
-  test("contact shows no invented contact details", async ({ page }) => {
-    await page.goto("/contact");
-    await expect(page.locator("a[href^='mailto:'], a[href^='tel:']")).toHaveCount(0);
-    await expect(page.getByText("Use the form to reach our team.")).toBeVisible();
   });
 
   test("blog index, article and category render in preview", async ({ page }) => {

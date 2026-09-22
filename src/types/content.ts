@@ -25,6 +25,7 @@ export type Seo = {
 /** The only CTA labels the site may use (constitution IX, spec FR-005). */
 export type CtaLabel =
   | "Get Free Consultation"
+  | "Choose the Plan"
   | "View Our Solutions"
   | "View Case Study"
   | "Discuss Your Business"

@@ -13,7 +13,7 @@ export const primaryNav = [
 ] as const;
 
 export const consultationCta = {
-  label: "Get Free Consultation",
+  label: "Choose the Plan",
   href: "/contact#consultation",
 } as const;
 
