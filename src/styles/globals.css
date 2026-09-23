@@ -26,6 +26,27 @@
   --color-transparent: transparent;
   --color-current: currentColor;
 
+  /* Admin dashboard only (/admin) — lead status + chart series. Not used on
+     the public site, so they sit outside its brand-only palette rule. */
+  --color-admin-bg: #0b0b0b;
+  --color-admin-panel: #141414;
+  --color-admin-line: #26261f;
+  --color-admin-status-new: #52514e;
+  --color-admin-status-contacted: #fab219;
+  --color-admin-status-follow-up: #ec835a;
+  --color-admin-status-converted: #0ca30c;
+  --color-admin-status-lost: #d03b3b;
+  /* Validated order — see dataviz skill palette.md. Do not reorder without
+     re-running scripts/validate_palette.js; adjacency is what's validated. */
+  --color-admin-chart-1: #2a78d6;
+  --color-admin-chart-2: #eb6834;
+  --color-admin-chart-3: #1baf7a;
+  --color-admin-chart-4: #eda100;
+  --color-admin-chart-5: #e87ba4;
+  --color-admin-chart-6: #008300;
+  --color-admin-chart-7: #4a3aa7;
+  --color-admin-chart-8: #e34948;
+
   /* Typography scale (fluid 320px → 1280px) */
   --text-display: clamp(2.25rem, 1.75rem + 2.5vw, 3.75rem);
   --text-display--line-height: 1.13;

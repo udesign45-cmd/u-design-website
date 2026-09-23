@@ -5,6 +5,7 @@ import { site } from "@/content/site";
 import { getFormOptions } from "@/lib/content/form-options";
 import { parseConsultation, safeValues } from "@/lib/forms/consultation-schema";
 import { deliverLead, type Lead } from "@/lib/forms/delivery";
+import { saveLeadToDashboard } from "@/lib/leads/store";
 import type { ConsultationState } from "@/lib/forms/fields";
 import { isRateLimited, rememberSubmission, seenSubmission } from "@/lib/forms/rate-limit";
 import { isSpam, signTimestamp } from "@/lib/forms/spam";
@@ -94,6 +95,11 @@ export async function submitConsultation(
   } catch {
     console.error("[lead-delivery]", { id: lead.id, reason: "configuration error" });
   }
+
+  // Dashboard storage is independent of email/webhook delivery and never
+  // throws; awaited (not fire-and-forget) so it isn't killed by the
+  // serverless runtime freezing right after the response is sent.
+  await saveLeadToDashboard(lead, data.plan);
 
   if (delivered) {
     rememberSubmission(submissionId);

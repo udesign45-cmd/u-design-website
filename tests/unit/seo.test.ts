@@ -127,7 +127,7 @@ describe("robots (T167)", () => {
     vi.stubEnv("VERCEL_ENV", "production");
     vi.stubEnv("NEXT_PUBLIC_SITE_URL", "https://www.example.org");
     const robots = (await import("@/app/robots")).default();
-    expect(robots.rules).toEqual({ userAgent: "*", allow: "/" });
+    expect(robots.rules).toEqual({ userAgent: "*", allow: "/", disallow: "/admin" });
     expect(robots.sitemap).toBe("https://www.example.org/sitemap.xml");
   });
 });

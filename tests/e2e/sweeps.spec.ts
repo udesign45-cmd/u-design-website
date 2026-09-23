@@ -32,8 +32,13 @@ test("links: every internal link resolves and no page is orphaned (T210)", async
   for (const path of paths) {
     const html = await fetchHtml(request, path);
     const hrefs = new Set(ALL(html, /<a[^>]+href="(\/[^"]*)"/g));
-    if (![...hrefs].some((h) => h.startsWith("/contact") && h.includes("#consultation"))) {
-      problems.push(`${path}: no one-click path to the consultation form`);
+    // The header CTA now leads to /plans (choose a service and tier) rather
+    // than straight to the form — one click to start, same as before, just
+    // through the plan picker first.
+    const hasDirectPath = [...hrefs].some((h) => h.startsWith("/contact") && h.includes("#consultation"));
+    const hasPlansPath = [...hrefs].some((h) => h === "/plans" || h.startsWith("/plans?"));
+    if (!hasDirectPath && !hasPlansPath) {
+      problems.push(`${path}: no one-click path to the consultation form or /plans`);
     }
     for (const href of hrefs) {
       const [withoutHash, hash] = href.split("#");

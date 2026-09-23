@@ -110,6 +110,16 @@ export function ConsultationForm({ options, fallback, privacyHref }: Consultatio
     preselect("industry", allowed.industries);
     preselect("need", allowed.needs);
 
+    const plan = params.get("plan");
+    const planInput = form.elements.namedItem("plan");
+    if (
+      plan &&
+      ["basic", "standard", "premium"].includes(plan) &&
+      planInput instanceof HTMLInputElement
+    ) {
+      planInput.value = plan;
+    }
+
     const source = params.get("source");
     let sourcePage = "/contact";
     if (source && source.startsWith("/") && !source.startsWith("//"))
@@ -396,6 +406,7 @@ export function ConsultationForm({ options, fallback, privacyHref }: Consultatio
         <input type="hidden" name="submissionId" />
         <input type="hidden" name="renderedAt" />
         <input type="hidden" name="sourcePage" />
+        <input type="hidden" name="plan" />
         {/* Honeypot (spam layer 1): invisible to people and assistive technology */}
         <div aria-hidden="true" className="sr-only">
           <label htmlFor="consultation-website">Website</label>

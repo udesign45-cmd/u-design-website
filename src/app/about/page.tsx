@@ -56,7 +56,13 @@ export default function AboutPage() {
         />
         <ScrollStagger as="ol" className="mt-10 max-w-3xl">
           {about.approach.points.map((p, i) => (
-            <CapabilityRow key={p.title} index={i + 1} name={p.title} benefit={p.description} />
+            <CapabilityRow
+              key={p.title}
+              index={i + 1}
+              name={p.title}
+              benefit={p.description}
+              headingLevel={3}
+            />
           ))}
         </ScrollStagger>
       </Section>

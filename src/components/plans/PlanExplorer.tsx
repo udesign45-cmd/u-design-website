@@ -65,7 +65,7 @@ export function PlanExplorer({ services }: PlanExplorerProps) {
               ))}
             </ul>
             <ButtonLink
-              href={consultationHref({ need: selected.slug, source: "/plans" })}
+              href={consultationHref({ need: selected.slug, source: "/plans", plan: tier.tier })}
               variant="secondary"
               size="lg"
               className="mt-8 w-full"

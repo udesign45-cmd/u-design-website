@@ -49,6 +49,7 @@ export default function SolutionsPage() {
               name={s.name}
               benefit={s.summary}
               href={hasPage(s) ? `/solutions/${s.slug}` : undefined}
+              headingLevel={3}
             />
           ))}
         </ScrollStagger>

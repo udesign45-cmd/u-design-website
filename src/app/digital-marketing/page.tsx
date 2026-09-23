@@ -57,7 +57,14 @@ export default function DigitalMarketingPage() {
         </div>
         <ScrollStagger as="ol" className="mt-14 lg:mt-16">
           {covered.map((c, i) => (
-            <CapabilityRow key={c.name} index={i + 1} name={c.name} benefit={c.benefit} href={c.href} />
+            <CapabilityRow
+              key={c.name}
+              index={i + 1}
+              name={c.name}
+              benefit={c.benefit}
+              href={c.href}
+              headingLevel={3}
+            />
           ))}
         </ScrollStagger>
       </Section>

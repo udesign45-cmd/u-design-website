@@ -14,14 +14,16 @@ export function CapabilityRow({
   name,
   benefit,
   href,
-}: CapabilityRowData & { index: number }) {
+  headingLevel = 4,
+}: CapabilityRowData & { index: number; /** Match whatever follows the section's own heading — no h2→h4 skip. */ headingLevel?: 3 | 4 }) {
+  const Heading = `h${headingLevel}` as const;
   return (
     <li className="group grid grid-cols-[auto_1fr] items-start gap-x-5 gap-y-1 border-t border-line py-5 transition-colors first:border-t-0 first:pt-0 sm:grid-cols-[auto_1fr_auto] sm:items-center sm:py-6">
       <span aria-hidden="true" className="editorial-index-sm tabular-nums">
         {String(index).padStart(2, "0")}
       </span>
       <div>
-        <h4 className="text-h4">
+        <Heading className="text-h4">
           {href ? (
             <Link
               href={href}
@@ -32,7 +34,7 @@ export function CapabilityRow({
           ) : (
             name
           )}
-        </h4>
+        </Heading>
         <p className="mt-1 text-ink-muted">{benefit}</p>
       </div>
       {href ? (

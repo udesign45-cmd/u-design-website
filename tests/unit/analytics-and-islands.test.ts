@@ -58,9 +58,19 @@ describe("client component allowlist (plan AD-06, task T179)", () => {
     "src/components/visuals/HeroMedia.tsx",
   ];
 
+  // /admin is a gated internal CRM, not part of the public site's performance
+  // budget (plan AD-06 scopes to the public marketing pages) — it's excluded
+  // rather than allowlisted file-by-file.
+  const EXCLUDED_DIRS = [
+    join("src", "app", "admin"),
+    join("src", "components", "admin"),
+    join("src", "lib", "supabase"),
+  ];
+
   function walk(dir: string): string[] {
     return readdirSync(dir).flatMap((name) => {
       const full = join(dir, name);
+      if (EXCLUDED_DIRS.some((excluded) => full.endsWith(excluded))) return [];
       return statSync(full).isDirectory() ? walk(full) : /\.(ts|tsx)$/.test(name) ? [full] : [];
     });
   }
