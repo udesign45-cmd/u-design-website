@@ -104,7 +104,7 @@ export const erp: Solution = {
     "Retail stock and purchasing",
     "Project-based procurement",
   ],
-  industries: ["manufacturing", "distribution", "retail", "construction"],
+  industries: ["manufacturing", "distribution", "retail", "construction", "textile"],
   projects: ["manufacturing-erp"],
   faqs: [
     {

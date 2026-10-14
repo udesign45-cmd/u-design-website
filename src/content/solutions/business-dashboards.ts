@@ -88,7 +88,15 @@ export const businessDashboards: Solution = {
     "Sales performance tracking",
     "Inventory and stock status",
   ],
-  industries: ["manufacturing", "distribution", "retail", "logistics", "real-estate"],
+  industries: [
+    "manufacturing",
+    "distribution",
+    "retail",
+    "logistics",
+    "real-estate",
+    "textile",
+    "restaurants",
+  ],
   projects: ["manufacturing-erp"],
   seo: {
     title: "Business Dashboard Development and Reporting",

@@ -96,7 +96,7 @@ export const crm: Solution = {
     "Distributor and dealer accounts",
     "Service business customer management",
   ],
-  industries: ["real-estate", "travel", "distribution", "retail", "healthcare"],
+  industries: ["real-estate", "travel", "distribution", "retail", "healthcare", "restaurants"],
   projects: ["real-estate-crm", "travel-agency-management"],
   faqs: [
     {

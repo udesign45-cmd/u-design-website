@@ -94,7 +94,15 @@ export const websiteDevelopment: Solution = {
     "Website redesigns and speed improvements",
     "Sites connected to internal software and CRM",
   ],
-  industries: ["manufacturing", "real-estate", "healthcare", "retail", "travel"],
+  industries: [
+    "manufacturing",
+    "real-estate",
+    "healthcare",
+    "retail",
+    "travel",
+    "textile",
+    "restaurants",
+  ],
   projects: [],
   faqs: [
     {

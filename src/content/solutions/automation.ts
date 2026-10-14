@@ -98,7 +98,14 @@ export const automation: Solution = {
     "Order status notifications",
     "Recurring management reports",
   ],
-  industries: ["manufacturing", "logistics", "distribution", "construction", "healthcare"],
+  industries: [
+    "manufacturing",
+    "logistics",
+    "distribution",
+    "construction",
+    "healthcare",
+    "textile",
+  ],
   projects: [],
   seo: {
     title: "Business Process Automation and Workflow Tools",

@@ -56,6 +56,8 @@ test.describe("industries (US3, FR-040–FR-043)", () => {
         "Travel & Tourism",
         "Healthcare",
         "Retail",
+        "Textile",
+        "Restaurants",
       ]),
     );
   });
@@ -116,7 +118,7 @@ test.describe("portfolio (US5, FR-050–FR-054)", () => {
 });
 
 test.describe("digital marketing, about, contact, blog (US6–US8)", () => {
-  test("marketing hub covers all seven services without guarantees", async ({ page }) => {
+  test("marketing hub covers all ten services without guarantees", async ({ page }) => {
     await page.goto("/digital-marketing");
     for (const name of [
       "Social Media Marketing",
@@ -126,6 +128,9 @@ test.describe("digital marketing, about, contact, blog (US6–US8)", () => {
       "Lead Generation",
       "Performance Marketing",
       "Digital Strategy",
+      "Google Ads",
+      "SEO",
+      "Growth Marketing",
     ]) {
       await expect(
         page.locator("main").getByRole("heading", { name, exact: true }).first(),
@@ -135,7 +140,15 @@ test.describe("digital marketing, about, contact, blog (US6–US8)", () => {
   });
 
   test("marketing detail pages build", async ({ page }) => {
-    for (const slug of ["social-media", "meta-ads", "content", "lead-generation"]) {
+    for (const slug of [
+      "social-media",
+      "meta-ads",
+      "content",
+      "lead-generation",
+      "google-ads",
+      "seo",
+      "growth-marketing",
+    ]) {
       const response = await page.goto(`/digital-marketing/${slug}`);
       expect(response?.status()).toBe(200);
     }
