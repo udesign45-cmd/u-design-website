@@ -191,6 +191,35 @@ export type ClientProject = ProjectBase & {
 export type Project = ConceptProject | ClientProject;
 
 // ---------------------------------------------------------------------------
+// Creative work (portfolio gallery: design, photography, video)
+// ---------------------------------------------------------------------------
+
+export type CreativeImage = { kind: "image"; title: string; image: StaticImage };
+
+export type CreativeVideo = {
+  kind: "video";
+  title: string;
+  /** Web encode served from /public/media. */
+  src: string;
+  poster: StaticImage;
+  /** m:ss, shown on the tile. */
+  duration: string;
+};
+
+export type CreativeItem = CreativeImage | CreativeVideo;
+
+export type CreativeCategory = {
+  slug: Slug;
+  name: string;
+  intro: string;
+  /** Tile crop only; the viewer always shows the full, uncropped piece. */
+  aspect: "4/5" | "16/9";
+  /** Self-initiated or speculative work, labelled "Concept / Demo" like concept projects. */
+  concept?: boolean;
+  items: CreativeItem[];
+};
+
+// ---------------------------------------------------------------------------
 // Proof (rendered only when verified/approved)
 // ---------------------------------------------------------------------------
 

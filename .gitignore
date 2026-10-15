@@ -36,3 +36,6 @@ Thumbs.db
 .claude/settings.local.json
 .vercel
 .env*
+
+# original, full-size portfolio media (web encodes live in public/media and src/assets)
+/Portfolio/

@@ -31,9 +31,9 @@ export const pageSeo = {
       "Pick a service, then compare Basic, Standard and Premium scope side by side, from custom software and CRM to digital marketing, before you get started.",
   },
   portfolio: {
-    title: "Portfolio: Business Software and ERP Projects",
+    title: "Portfolio: Social Media, Video Ads and Software",
     description:
-      "Business software projects and concept systems from U Design, including manufacturing ERP, travel agency management and real estate CRM.",
+      "Social media design, AI product photoshoots, video ads and logo animations from U Design, plus business software concepts built around real workflows.",
   },
   about: {
     title: "About U Design: Software and Digital Marketing",

@@ -53,3 +53,47 @@ export function CheckIcon(props: Props) {
     </Svg>
   );
 }
+
+export function PlayIcon(props: Props) {
+  return (
+    <Svg {...props}>
+      <path d="M6 4.5v15a1 1 0 0 0 1.5.86l12.5-7.5a1 1 0 0 0 0-1.72L7.5 3.64A1 1 0 0 0 6 4.5z" />
+    </Svg>
+  );
+}
+
+export function CloseIcon(props: Props) {
+  return (
+    <Svg {...props}>
+      <path d="M18 6 6 18" />
+      <path d="m6 6 12 12" />
+    </Svg>
+  );
+}
+
+export function ChevronLeftIcon(props: Props) {
+  return (
+    <Svg {...props}>
+      <path d="m15 18-6-6 6-6" />
+    </Svg>
+  );
+}
+
+export function ChevronRightIcon(props: Props) {
+  return (
+    <Svg {...props}>
+      <path d="m9 18 6-6-6-6" />
+    </Svg>
+  );
+}
+
+export function ExpandIcon(props: Props) {
+  return (
+    <Svg {...props}>
+      <path d="M15 3h6v6" />
+      <path d="M9 21H3v-6" />
+      <path d="m21 3-7 7" />
+      <path d="m3 21 7-7" />
+    </Svg>
+  );
+}

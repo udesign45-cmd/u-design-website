@@ -111,6 +111,38 @@ test.describe("portfolio (US5, FR-050–FR-054)", () => {
     await expect(page.getByText("Concept / Demo").first()).toBeVisible();
   });
 
+  test("creative work galleries open in the viewer", async ({ page }) => {
+    await page.goto("/portfolio");
+    for (const id of [
+      "social-media-design",
+      "ai-photoshoots",
+      "video-ads",
+      "ai-video-ads",
+      "logo-animations",
+    ]) {
+      await expect(page.locator(`#${id} li`).first()).toBeVisible();
+      await expect(page.locator(`nav a[href="#${id}"]`)).toHaveCount(1);
+    }
+    // Before hydration a tile is a plain link to the file; wait for the viewer to take over.
+    await expect(page.locator("#social-media-design ul[data-ready]")).toHaveCount(1);
+    await expect(page.locator("#video-ads ul[data-ready]")).toHaveCount(1);
+
+    await page.locator("#social-media-design li a").first().click();
+    const dialog = page.getByRole("dialog");
+    await expect(dialog).toBeVisible();
+    await expect(dialog.locator("img")).toBeVisible();
+    await expect(dialog).toContainText("1 /");
+    await page.keyboard.press("ArrowRight");
+    await expect(dialog).toContainText("2 /");
+    await page.keyboard.press("Escape");
+    await expect(dialog).toBeHidden();
+
+    await page.locator("#video-ads li a").first().click();
+    await expect(dialog.locator("video")).toHaveAttribute("src", /^\/media\/video-ads\/.+\.mp4$/);
+    await dialog.getByRole("button", { name: "Close" }).click();
+    await expect(dialog).toBeHidden();
+  });
+
   test("filter is not shown with six or fewer projects", async ({ page }) => {
     await page.goto("/portfolio");
     await expect(page.getByLabel("Industry", { exact: true })).toHaveCount(0);

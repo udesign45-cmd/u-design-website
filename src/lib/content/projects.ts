@@ -1,5 +1,6 @@
+import { creativeCategories } from "@/content/creative-work";
 import { projects } from "@/content/projects";
-import type { Project } from "@/types/content";
+import type { CreativeCategory, Project } from "@/types/content";
 import { includeDrafts, isVisible } from "./core";
 
 export type ProjectFilter = { industry?: string; solution?: string };
@@ -40,4 +41,9 @@ export function projectHasPage(project: Project): boolean {
 
 export function getProjectPages(): Project[] {
   return getProjects().filter(projectHasPage);
+}
+
+/** Creative work galleries (design, photography, video) in display order; empty ones are skipped. */
+export function getCreativeCategories(): CreativeCategory[] {
+  return creativeCategories.filter((c) => c.items.length > 0);
 }

@@ -54,6 +54,7 @@ describe("client component allowlist (plan AD-06, task T179)", () => {
     "src/components/motion/HeroReveal.tsx",
     "src/components/motion/ScrollStagger.tsx",
     "src/components/plans/PlanExplorer.tsx",
+    "src/components/portfolio/MediaGallery.tsx",
     "src/components/portfolio/PortfolioFilter.tsx",
     "src/components/visuals/HeroMedia.tsx",
   ];
